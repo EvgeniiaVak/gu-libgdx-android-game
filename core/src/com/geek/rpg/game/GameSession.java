@@ -2,6 +2,7 @@ package com.geek.rpg.game;
 
 import com.badlogic.gdx.Gdx;
 import com.geek.rpg.game.character.Commander;
+import com.geek.rpg.game.character.UnitFactory;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -20,7 +21,7 @@ public class GameSession {
         return ourInstance;
     }
 
-    private Commander player;
+    private Commander player, enemy;
 
     private GameSession() {
     }
@@ -28,16 +29,23 @@ public class GameSession {
     public Commander getPlayer() {
         return player;
     }
+    public Commander getEnemy() {
+        return enemy;
+    }
 
     public void startNewSession() {
         player = new Commander();
-        makeStandartArmy();
+        enemy = new Commander();
+        enemy.setAI(true);
+        makeStandardArmy(player);
+        makeStandardArmy(enemy);
     }
 
     public void saveSession() {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(Gdx.files.local("mydata.sav").file()));
             oos.writeObject(player);
+            oos.writeObject(enemy);
             oos.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -48,17 +56,23 @@ public class GameSession {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Gdx.files.local("mydata.sav").file()));
             this.player = (Commander)ois.readObject();
+            this.enemy = (Commander)ois.readObject();
             ois.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void makeStandartArmy() {
-        com.geek.rpg.game.character.UnitFactory factory = new com.geek.rpg.game.character.UnitFactory();
-        player.setArmy(
-                null, factory.createUnit(com.geek.rpg.game.character.UnitFactory.UnitType.KNIGHT, false, false, 1),
-                factory.createUnit(com.geek.rpg.game.character.UnitFactory.UnitType.MAGE, false, false, 1), factory.createUnit(com.geek.rpg.game.character.UnitFactory.UnitType.SKELETON, false, false, 1),
+    public static void makeStandardArmy(Commander commander) {
+        UnitFactory factory = new UnitFactory();
+
+        // FIXME: 11/25/17 make enemy army revert rows
+
+        commander.setArmy(
+                null,
+                factory.createUnit(UnitFactory.UnitType.KNIGHT, commander.isAI(), commander.isAI(), 1),
+                factory.createUnit(UnitFactory.UnitType.MAGE, commander.isAI(), commander.isAI(), 1),
+                factory.createUnit(UnitFactory.UnitType.SKELETON, commander.isAI(), commander.isAI(), 1),
                 null, null
         );
     }

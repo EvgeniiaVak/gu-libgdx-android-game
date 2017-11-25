@@ -7,17 +7,26 @@ import java.io.Serializable;
  */
 
 public class Commander implements Serializable {
-    private com.geek.rpg.game.character.Unit[][] units;
+    private boolean isAI;
+    private Unit[][] units;
 
-    public com.geek.rpg.game.character.Unit[][] getUnits() {
+    public Unit[][] getUnits() {
         return units;
     }
 
     public Commander() {
-        units = new com.geek.rpg.game.character.Unit[2][3];
+        units = new Unit[2][3];
     }
 
-    public void setArmy(com.geek.rpg.game.character.Unit... inUnits) {
+    public boolean isAI() {
+        return isAI;
+    }
+
+    public void setAI(boolean AI) {
+        isAI = AI;
+    }
+
+    public void setArmy(Unit... inUnits) {
         int counter = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 2; j++) {

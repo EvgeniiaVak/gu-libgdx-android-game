@@ -33,12 +33,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BattleScreen implements Screen {
+    private long turn;
+
     private SpriteBatch batch;
     private BitmapFont font;
+    private TextureRegion textureSelector;
+
     private List<Unit> units;
     private int currentUnitIndex;
     private Unit currentUnit;
-    private TextureRegion textureSelector;
+
     private Texture textureBackground;
     private InfoSystem infoSystem;
     private UnitFactory unitFactory;
@@ -52,7 +56,6 @@ public class BattleScreen implements Screen {
     public SpecialFXEmitter getSpecialFXEmitter() {
         return specialFXEmitter;
     }
-
     public List<Unit> getUnits() {
         return units;
     }
@@ -88,32 +91,26 @@ public class BattleScreen implements Screen {
                 stayPoints[i][j] = new Vector2(x, TOP_STAYPOINT_Y - j * DISTANCE_BETWEEN_UNITS_Y);
             }
         }
-        Commander player1 = GameSession.getInstance().getPlayer();
-        Commander player2 = new Commander();
+        Commander player = GameSession.getInstance().getPlayer();
+        Commander enemy = GameSession.getInstance().getEnemy();
         unitFactory = new UnitFactory();
-
-        player2.setArmy(
-                unitFactory.createUnit(UnitFactory.UnitType.KNIGHT, true, true, 1), null,
-                unitFactory.createUnit(UnitFactory.UnitType.SKELETON, true, true, 2), unitFactory.createUnit(UnitFactory.UnitType.MAGE, true, true, 4),
-                null, null
-        );
-
         units = new ArrayList<Unit>();
 
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 3; j++) {
-                if (player1.getUnits()[i][j] != null) {
-                    unitFactory.reloadUnit(player1.getUnits()[i][j]);
-                    player1.getUnits()[i][j].setToMap(this, i, j);
-                    units.add(player1.getUnits()[i][j]);
+                if (player.getUnits()[i][j] != null) {
+                    unitFactory.reloadUnit(player.getUnits()[i][j]);
+                    player.getUnits()[i][j].setToMap(this, i, j);
+                    units.add(player.getUnits()[i][j]);
                 }
             }
         }
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 3; j++) {
-                if (player2.getUnits()[i][j] != null) {
-                    units.add(player2.getUnits()[i][j]);
-                    player2.getUnits()[i][j].setToMap(this, i + 2, j);
+                if (enemy.getUnits()[i][j] != null) {
+                    unitFactory.reloadUnit(enemy.getUnits()[i][j]);
+                    units.add(enemy.getUnits()[i][j]);
+                    enemy.getUnits()[i][j].setToMap(this, i + 2, j);
                 }
             }
         }
