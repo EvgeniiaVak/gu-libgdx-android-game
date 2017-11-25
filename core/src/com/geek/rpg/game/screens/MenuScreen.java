@@ -16,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.geek.rpg.game.Assets;
 import com.geek.rpg.game.GameSession;
-import com.geek.rpg.game.ScreenManager;
 
 /**
  * Created by FlameXander on 16.11.2017.

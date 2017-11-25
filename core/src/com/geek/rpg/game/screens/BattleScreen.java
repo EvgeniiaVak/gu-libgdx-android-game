@@ -21,13 +21,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.geek.rpg.game.Assets;
 import com.geek.rpg.game.GameSession;
-import com.geek.rpg.game.Hero;
-import com.geek.rpg.game.InfoSystem;
-import com.geek.rpg.game.MyInputProcessor;
-import com.geek.rpg.game.ScreenManager;
-import com.geek.rpg.game.SpecialFXEmitter;
-import com.geek.rpg.game.Unit;
-import com.geek.rpg.game.UnitFactory;
+import com.geek.rpg.game.character.Commander;
+import com.geek.rpg.game.utils.InfoSystem;
+import com.geek.rpg.game.utils.MyInputProcessor;
+import com.geek.rpg.game.spfx.SpecialFXEmitter;
+import com.geek.rpg.game.character.Unit;
+import com.geek.rpg.game.character.UnitFactory;
 import com.geek.rpg.game.actions.BaseAction;
 
 import java.util.ArrayList;
@@ -89,8 +88,8 @@ public class BattleScreen implements Screen {
                 stayPoints[i][j] = new Vector2(x, TOP_STAYPOINT_Y - j * DISTANCE_BETWEEN_UNITS_Y);
             }
         }
-        Hero player1 = GameSession.getInstance().getPlayer();
-        Hero player2 = new Hero();
+        Commander player1 = GameSession.getInstance().getPlayer();
+        Commander player2 = new Commander();
         unitFactory = new UnitFactory();
 
         player2.setArmy(

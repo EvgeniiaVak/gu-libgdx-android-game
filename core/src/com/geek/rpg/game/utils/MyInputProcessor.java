@@ -1,9 +1,10 @@
-package com.geek.rpg.game;
+package com.geek.rpg.game.utils;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+
+import com.geek.rpg.game.screens.ScreenManager;
 
 /**
  * Created by FlameXander on 13.11.2017.

@@ -13,8 +13,8 @@ public class RpgGame extends Game {
     @Override
     public void create() {
         batch = new SpriteBatch();
-        ScreenManager.getInstance().init(this, batch);
-        ScreenManager.getInstance().switchScreen(ScreenManager.ScreenType.MENU);
+        com.geek.rpg.game.screens.ScreenManager.getInstance().init(this, batch);
+        com.geek.rpg.game.screens.ScreenManager.getInstance().switchScreen(com.geek.rpg.game.screens.ScreenManager.ScreenType.MENU);
     }
 
     @Override

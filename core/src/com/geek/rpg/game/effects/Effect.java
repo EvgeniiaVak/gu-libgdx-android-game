@@ -1,6 +1,6 @@
 package com.geek.rpg.game.effects;
 
-import com.geek.rpg.game.Unit;
+import com.geek.rpg.game.character.Unit;
 
 import java.io.Serializable;
 

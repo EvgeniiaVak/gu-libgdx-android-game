@@ -1,4 +1,4 @@
-package com.geek.rpg.game;
+package com.geek.rpg.game.character;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.geek.rpg.game.Assets;
+import com.geek.rpg.game.utils.FlyingText;
 import com.geek.rpg.game.actions.BaseAction;
 import com.geek.rpg.game.effects.Effect;
 import com.geek.rpg.game.screens.BattleScreen;
@@ -26,7 +28,7 @@ public class Unit implements Serializable {
     }
 
     transient private BattleScreen battleScreen;
-    private Hero hero;
+    private Commander commander;
     transient private Unit target;
     transient private TextureRegion texture;
     transient private TextureRegion textureHpBar;
@@ -77,15 +79,15 @@ public class Unit implements Serializable {
     }
 
     public boolean isMyTeammate(Unit another) {
-        return this.hero == another.hero;
+        return this.commander == another.commander;
     }
 
     public Stats getStats() {
         return stats;
     }
 
-    public void setHero(Hero hero) {
-        this.hero = hero;
+    public void setCommander(Commander commander) {
+        this.commander = commander;
     }
 
     public Group getActionPanel() {

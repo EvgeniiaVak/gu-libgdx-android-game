@@ -1,6 +1,7 @@
 package com.geek.rpg.game;
 
 import com.badlogic.gdx.Gdx;
+import com.geek.rpg.game.character.Commander;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,17 +20,17 @@ public class GameSession {
         return ourInstance;
     }
 
-    private Hero player;
+    private Commander player;
 
     private GameSession() {
     }
 
-    public Hero getPlayer() {
+    public Commander getPlayer() {
         return player;
     }
 
     public void startNewSession() {
-        player = new Hero();
+        player = new Commander();
         makeStandartArmy();
     }
 
@@ -46,7 +47,7 @@ public class GameSession {
     public void loadSession() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Gdx.files.local("mydata.sav").file()));
-            this.player = (Hero)ois.readObject();
+            this.player = (Commander)ois.readObject();
             ois.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,10 +55,10 @@ public class GameSession {
     }
 
     public void makeStandartArmy() {
-        UnitFactory factory = new UnitFactory();
+        com.geek.rpg.game.character.UnitFactory factory = new com.geek.rpg.game.character.UnitFactory();
         player.setArmy(
-                null, factory.createUnit(UnitFactory.UnitType.KNIGHT, false, false, 1),
-                factory.createUnit(UnitFactory.UnitType.MAGE, false, false, 1), factory.createUnit(UnitFactory.UnitType.SKELETON, false, false, 1),
+                null, factory.createUnit(com.geek.rpg.game.character.UnitFactory.UnitType.KNIGHT, false, false, 1),
+                factory.createUnit(com.geek.rpg.game.character.UnitFactory.UnitType.MAGE, false, false, 1), factory.createUnit(com.geek.rpg.game.character.UnitFactory.UnitType.SKELETON, false, false, 1),
                 null, null
         );
     }

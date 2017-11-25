@@ -1,6 +1,6 @@
-package com.geek.rpg.game;
+package com.geek.rpg.game.character;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.geek.rpg.game.Assets;
 import com.geek.rpg.game.actions.BaseAction;
 import com.geek.rpg.game.actions.DefenceStanceAction;
 import com.geek.rpg.game.actions.FireballAction;
@@ -21,7 +21,7 @@ public class UnitFactory {
         KNIGHT, SKELETON, MAGE;
     }
 
-    private Map<UnitType, Unit> data;
+    private Map<UnitType, com.geek.rpg.game.character.Unit> data;
     private List<Autopilot> aiBank;
     private List<BaseAction> actions;
 
@@ -34,11 +34,11 @@ public class UnitFactory {
         this.aiBank = new ArrayList<Autopilot>();
         this.aiBank.add(new Autopilot() {
             @Override
-            public boolean turn(Unit me) {
+            public boolean turn(com.geek.rpg.game.character.Unit me) {
                 if (!me.getBattleScreen().canIMakeTurn()) {
                     return false;
                 }
-                Unit target = null;
+                com.geek.rpg.game.character.Unit target = null;
                 int counter = 0;
                 do {
                     target = me.getBattleScreen().getUnits().get((int) (Math.random() * me.getBattleScreen().getUnits().size()));
@@ -62,38 +62,38 @@ public class UnitFactory {
     }
 
     public void createUnitPatterns() {
-        data = new HashMap<UnitType, Unit>();
+        data = new HashMap<UnitType, com.geek.rpg.game.character.Unit>();
         Stats knightStats = new Stats(1, 20, 10, 30, 2, 5, 5f, 1f, 5f, 1f, 5f);
-        Unit knight = new Unit(UnitType.KNIGHT, Assets.getInstance().getAtlas().findRegion("knightAnim"), knightStats);
+        com.geek.rpg.game.character.Unit knight = new com.geek.rpg.game.character.Unit(UnitType.KNIGHT, Assets.getInstance().getAtlas().findRegion("knightAnim"), knightStats);
         knight.getActions().add(actions.get(0));
         knight.getActions().add(actions.get(1));
         data.put(UnitType.KNIGHT, knight);
 
         Stats skeletonStats = new Stats(1, 10, 20, 15, 1, 0, 2.5f, 5.0f, 5.0f, 1f, 0.5f);
-        Unit skeleton = new Unit(UnitType.SKELETON, Assets.getInstance().getAtlas().findRegion("skeleton"), skeletonStats);
+        com.geek.rpg.game.character.Unit skeleton = new com.geek.rpg.game.character.Unit(UnitType.SKELETON, Assets.getInstance().getAtlas().findRegion("skeleton"), skeletonStats);
         skeleton.getActions().add(actions.get(0));
         skeleton.getActions().add(actions.get(2));
         data.put(UnitType.SKELETON, skeleton);
 
         Stats mageStats = new Stats(1, 5, 10, 10, 0, 15, 0.5f, 0.5f, 2f, 0.2f, 5.0f);
-        Unit mage = new Unit(UnitType.MAGE, Assets.getInstance().getAtlas().findRegion("mage"), mageStats);
+        com.geek.rpg.game.character.Unit mage = new com.geek.rpg.game.character.Unit(UnitType.MAGE, Assets.getInstance().getAtlas().findRegion("mage"), mageStats);
         mage.getActions().add(actions.get(3));
         mage.getActions().add(actions.get(2));
         data.put(UnitType.MAGE, mage);
     }
 
 
-    public void reloadUnit(Unit unit) {
-        Unit unitPattern = data.get(unit.getType());
+    public void reloadUnit(com.geek.rpg.game.character.Unit unit) {
+        com.geek.rpg.game.character.Unit unitPattern = data.get(unit.getType());
         unit.reload(unitPattern.getTexture(), unitPattern.getActions());
         if (unit.isAI()) {
             unit.setAutopilot(aiBank.get(0));
         }
     }
 
-    public Unit createUnit(UnitType unitType, boolean flip, boolean ai, int level) {
-        Unit unitPattern = data.get(unitType);
-        Unit unit = new Unit(unitType, unitPattern.getTexture(), (Stats) unitPattern.getStats().clone());
+    public com.geek.rpg.game.character.Unit createUnit(UnitType unitType, boolean flip, boolean ai, int level) {
+        com.geek.rpg.game.character.Unit unitPattern = data.get(unitType);
+        com.geek.rpg.game.character.Unit unit = new com.geek.rpg.game.character.Unit(unitType, unitPattern.getTexture(), (Stats) unitPattern.getStats().clone());
         unit.setLevelTo(level);
         unit.setActions(unitPattern.getActions());
         if (ai) {

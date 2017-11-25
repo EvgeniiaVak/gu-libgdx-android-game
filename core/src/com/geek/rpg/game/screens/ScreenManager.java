@@ -1,11 +1,11 @@
-package com.geek.rpg.game;
+package com.geek.rpg.game.screens;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.geek.rpg.game.screens.BattleScreen;
-import com.geek.rpg.game.screens.MenuScreen;
+import com.geek.rpg.game.Assets;
+import com.geek.rpg.game.RpgGame;
 
 /**
  * Created by FlameXander on 13.11.2017.

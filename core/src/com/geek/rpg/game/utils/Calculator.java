@@ -1,4 +1,6 @@
-package com.geek.rpg.game;
+package com.geek.rpg.game.utils;
+
+import com.geek.rpg.game.character.Unit;
 
 public class Calculator {
     private static final int MIN_MELEE_ATTACK_CHANCE = 20;

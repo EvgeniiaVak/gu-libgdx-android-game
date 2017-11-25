@@ -1,7 +1,6 @@
 package com.geek.rpg.game.actions;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.geek.rpg.game.Unit;
+import com.geek.rpg.game.character.Unit;
 
 public abstract class BaseAction {
     String name;

@@ -1,4 +1,4 @@
-package com.geek.rpg.game;
+package com.geek.rpg.game.character;
 
 import java.io.Serializable;
 

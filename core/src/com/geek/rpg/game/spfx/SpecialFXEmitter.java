@@ -1,7 +1,9 @@
-package com.geek.rpg.game;
+package com.geek.rpg.game.spfx;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import com.geek.rpg.game.character.Unit;
+import com.geek.rpg.game.spfx.SpecialFX;
 
 /**
  * Created by FlameXander on 16.11.2017.
@@ -11,9 +13,9 @@ public class SpecialFXEmitter {
     private SpecialFX[] fxs;
 
     public SpecialFXEmitter() {
-        this.fxs = new SpecialFX[100];
+        this.fxs = new com.geek.rpg.game.spfx.SpecialFX[100];
         for (int i = 0; i < fxs.length; i++) {
-            this.fxs[i] = new SpecialFX();
+            this.fxs[i] = new com.geek.rpg.game.spfx.SpecialFX();
         }
     }
 

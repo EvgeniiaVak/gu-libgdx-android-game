@@ -1,9 +1,7 @@
 package com.geek.rpg.game.actions;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.geek.rpg.game.Assets;
-import com.geek.rpg.game.Calculator;
-import com.geek.rpg.game.Unit;
+import com.geek.rpg.game.utils.Calculator;
+import com.geek.rpg.game.character.Unit;
 
 /**
  * Created by FlameXander on 17.11.2017.

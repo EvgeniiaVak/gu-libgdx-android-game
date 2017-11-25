@@ -2,10 +2,7 @@ package com.geek.rpg.game;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-
-import java.awt.Font;
 
 /**
  * Created by FlameXander on 13.11.2017.
@@ -33,7 +30,7 @@ public class Assets {
         assetManager = new AssetManager();
     }
 
-    public void loadAssets(ScreenManager.ScreenType type) {
+    public void loadAssets(com.geek.rpg.game.screens.ScreenManager.ScreenType type) {
         switch (type) {
             case MENU:
                 assetManager.load("rpg.pack", TextureAtlas.class);
